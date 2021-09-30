@@ -4,10 +4,11 @@ import dash_html_components as html
 import numpy as np
 import pandas as pd
 from dash.dependencies import Input, Output
+import time
+
 
 from django_plotly_dash import DjangoDash
 from demo.models import Person
-# Read plotly example dataframe to plot barchart
 import plotly.express as px
 import dash_table
 import plotly
@@ -19,14 +20,11 @@ from dash_extensions.snippets import send_data_frame
 df = pd.DataFrame(Person.objects.all().values())
 dff = df.groupby('city',as_index=False)[['age','income']].sum()
 print(dff)
-external_stylesheets=['https://codepen.io/amyoshino/pen/jzXypZ.css']
 
 # Important: Define Id for Plotly Dash integration in Django
 app = DjangoDash('dash_integration_id')
 
-app.css.append_css({
-"external_url": external_stylesheets
-})
+
 
 app.layout = html.Div(
     html.Div([
@@ -266,9 +264,9 @@ app.layout = html.Div([
 
 ])
 
-@app.callback(Output("download", "data"), [Input("btn", "n_clicks")])
+@app.callback(Output("download", "data"), [Input("btn", "n_clicks")],prevent_initial_call=True,)
 def generate_csv(n_nlicks):
-    return send_data_frame(df.to_csv, filename="some_name.csv")
+    return send_data_frame(df.to_csv, filename=str(round(time.time()))+'.csv')
 
 @app.callback(
     [Output('barchart','figure'),
