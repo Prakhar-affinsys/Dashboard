@@ -40,7 +40,10 @@ class NameViews(APIView):
 class Analytics(APIView):
 	def post(self,request):
 		payload = self.request.data
-		name = payload['name']
-		print(payload)
-		new_plot(name)
+		if 'name' in payload:
+			name=payload['name']
+			print(payload)
+			new_plot(name)
+		elif 'city' in payload['city']:
+			new_plot1(payload['city'])
 		return HttpResponseRedirect('/dash_plot')
