@@ -9,7 +9,6 @@ import time
 
 from django_plotly_dash import DjangoDash
 from demo.models import Person
-# Read plotly example dataframe to plot barchart
 import plotly.express as px
 import dash_table
 import plotly
