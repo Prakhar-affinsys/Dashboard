@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Person
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django_dah.dash_app_code import new_plot
+from django_dah.dash_app_code import new_plot, new_plot1
 from django.http import HttpResponseRedirect
 from datetime import datetime 
 # Create your views here.
@@ -44,6 +44,6 @@ class Analytics(APIView):
 			name=payload['name']
 			print(payload)
 			new_plot(name)
-		elif 'city' in payload['city']:
+		elif 'city' in payload:
 			new_plot1(payload['city'])
 		return HttpResponseRedirect('/dash_plot')
