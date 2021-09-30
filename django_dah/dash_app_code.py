@@ -20,14 +20,11 @@ from dash_extensions.snippets import send_data_frame
 df = pd.DataFrame(Person.objects.all().values())
 dff = df.groupby('city',as_index=False)[['age','income']].sum()
 print(dff)
-external_stylesheets=['https://codepen.io/amyoshino/pen/jzXypZ.css']
 
 # Important: Define Id for Plotly Dash integration in Django
 app = DjangoDash('dash_integration_id')
 
-app.css.append_css({
-"external_url": external_stylesheets
-})
+
 
 app.layout = html.Div(
     html.Div([
