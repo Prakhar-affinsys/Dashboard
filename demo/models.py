@@ -11,5 +11,6 @@ class Person(models.Model):
 	hometown = models.CharField(max_length=50, blank=True, null=True)
 	zipcode = models.CharField(max_length=6, blank=True, null=True)
 	city = models.CharField(max_length=50, blank=True, null=True)
+	date = models.DateTimeField(blank=True, null=True)
 
 

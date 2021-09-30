@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django_dah.dash_app_code import new_plot
 from django.http import HttpResponseRedirect
+from datetime import datetime 
 # Create your views here.
 class NameViews(APIView):
 
@@ -19,7 +20,8 @@ class NameViews(APIView):
 		hometown = payload['hometown']
 		zipcode = payload['zipcode']
 		city = payload['city']
-		
+		timestamp = payload['timestamp']
+		date = datetime.utcfromtimestamp(float(timestamp))
 
 		Person.objects.get_or_create(
 			name = name,
@@ -28,7 +30,7 @@ class NameViews(APIView):
 			hometown = hometown,
 			zipcode = zipcode,
 			city = city,
-			
+			date = date,
 			)
 
 		return Response('OK')

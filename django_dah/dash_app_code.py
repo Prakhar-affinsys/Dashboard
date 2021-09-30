@@ -148,7 +148,7 @@ app.css.append_css({
 "external_url": external_stylesheets
 })
 
-app.layout = html.Div(
+app.layout = html.Div([
     html.Div([
         # Adding one extar Div
         html.Div([
@@ -222,9 +222,49 @@ app.layout = html.Div(
                 ],className='six columns'),
              ],className = 'row'),
 
-        ])
+        ]),
 
-)
+     html.Div([
+            html.Pre(children= "Bar Chart Display",
+            style={"text-align": "center", "font-size":"100%", "color":"black"})
+        ]),
+
+        html.Div([
+            html.Label(['X-axis categories to compare:'],style={'font-weight': 'bold'}),
+            dcc.RadioItems(
+                id='xaxis_raditem',
+                options=[
+                         {'label': 'Name', 'value': 'name'},
+                         {'label': 'City', 'value': 'city'},
+                         {'label': 'Income', 'value': 'income'},
+                         {'label': 'Age', 'value': 'age'},
+
+                ],
+                value='age',
+                style={"width": "50%"}
+            ),
+        ]),
+
+        html.Div([
+            html.Br(),
+            html.Label(['Y-axis values to compare:'], style={'font-weight': 'bold'}),
+            dcc.RadioItems(
+                id='yaxis_raditem',
+                options=[
+                         {'label': 'Age', 'value': 'age'},
+                         {'label': 'Income', 'value': 'income'},
+                ],
+                value='income',
+                style={"width": "50%"}
+            ),
+        ]),
+
+    html.Div([
+        dcc.Graph(id='the_graph')
+    ]),
+
+
+])
 
 @app.callback(Output("download", "data"), [Input("btn", "n_clicks")])
 def generate_csv(n_nlicks):
@@ -256,17 +296,43 @@ def update_data(chosen_rows,bardropval,linedropval):
 
     list_chosen=df_filtered['name'].tolist()
     df_line = df[df['name'].isin(list_chosen)]
-    print(df_line)
+    #print(df_line)
     line_chart=px.line(
         data_frame=df_line,
-        x='income',
+        x='date',
         y=linedropval,
         color='name',
-        labels={'name':'person', 'income':'Income'},
+        #labels={'name':'person', 'income':'Income'},
         )
     line_chart.update_layout(uirevision='foo')
 
     return (pie_chart,line_chart)
+
+@app.callback(
+    Output(component_id='the_graph', component_property='figure'),
+    [Input(component_id='xaxis_raditem', component_property='value'),
+     Input(component_id='yaxis_raditem', component_property='value')]
+)
+
+def update_graph(x_axis, y_axis):
+
+    dff = df
+    # print(dff[[x_axis,y_axis]][:1])
+
+    barchart=px.bar(
+            data_frame=dff,
+            x=x_axis,
+            y=y_axis,
+            title=y_axis+': by '+x_axis,
+            #facet_col='Borough',
+            #color='Borough',
+            # barmode='group',
+            )
+
+    barchart.update_layout(xaxis={'categoryorder':'total ascending'},
+                           title={'xanchor':'center', 'yanchor': 'top', 'y':0.9,'x':0.5,})
+
+    return (barchart)
 
 
 
