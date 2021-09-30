@@ -4,6 +4,8 @@ import dash_html_components as html
 import numpy as np
 import pandas as pd
 from dash.dependencies import Input, Output
+import time
+
 
 from django_plotly_dash import DjangoDash
 from demo.models import Person
@@ -266,9 +268,9 @@ app.layout = html.Div([
 
 ])
 
-@app.callback(Output("download", "data"), [Input("btn", "n_clicks")])
+@app.callback(Output("download", "data"), [Input("btn", "n_clicks")],prevent_initial_call=True,)
 def generate_csv(n_nlicks):
-    return send_data_frame(df.to_csv, filename="some_name.csv")
+    return send_data_frame(df.to_csv, filename=str(round(time.time()))+'.csv')
 
 @app.callback(
     [Output('barchart','figure'),
