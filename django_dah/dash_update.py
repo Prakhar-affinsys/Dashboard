@@ -206,7 +206,6 @@ def new_dash(**kwargs):
 	)
 	def update_data(start_date, end_date):
 	    data = df1.to_dict("records")
-	    print(df[:2])
 	    if start_date and end_date:
 	        mask = (date_string_to_date(df1["date"]) >= date_string_to_date(start_date)) & (
 	            date_string_to_date(df1["date"]) <= date_string_to_date(end_date)
