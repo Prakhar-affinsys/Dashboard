@@ -2,9 +2,12 @@ from django.shortcuts import render
 from .models import Person
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django_dah.dash_app_code import new_plot, new_plot1
+from django_dah.dash_app_code import new_plot, new_plot1, new_plot2
+from django_dah.dash_code_new import new_plot_clean
+from django_dah.dash_update import new_dash
 from django.http import HttpResponseRedirect
 from datetime import datetime 
+
 # Create your views here.
 class NameViews(APIView):
 
@@ -46,4 +49,15 @@ class Analytics(APIView):
 			new_plot(name)
 		elif 'city' in payload:
 			new_plot1(payload['city'])
+		else:
+			new_plot2(payload['city','age'])
+		return HttpResponseRedirect('/dash_plot')
+		
+
+class Dashboard(APIView):
+	def post(self,request):
+		payload = self.request.data
+		kwargs=payload
+		#new_plot_clean(**kwargs)
+		new_dash(**kwargs)
 		return HttpResponseRedirect('/dash_plot')

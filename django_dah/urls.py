@@ -10,6 +10,8 @@ from django.conf.urls.static import static
 # Loading plotly Dash apps script
 import django_dah.dash_app_code
 
+import django_dah.dash_code_new
+
 #from django_plotly_dash.views import add_to_session
 
 urlpatterns = [
@@ -21,4 +23,6 @@ urlpatterns = [
 	path('', TemplateView.as_view(template_name='home.html'), name='home'),
 	path('click/',include('demo.urls')),
 	path('plot/', include('demo.urls')),
+	path('plot1/', include('demo.urls')),
+
 ]
