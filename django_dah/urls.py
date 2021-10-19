@@ -22,7 +22,7 @@ urlpatterns = [
 	url('^django_plotly_dash/', include('django_plotly_dash.urls')),
 	path('', TemplateView.as_view(template_name='home.html'), name='home'),
 	path('click/',include('demo.urls')),
-	path('plot/', include('demo.urls')),
+	#path('plot/', include('demo.urls')),
 	path('plot1/', include('demo.urls')),
 
 ]
