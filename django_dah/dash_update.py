@@ -18,7 +18,7 @@ from dash_extensions.snippets import send_data_frame
 
 def new_dash(**kwargs):
 	df1 = pd.DataFrame(Person.objects.filter(**kwargs).values())
-	df1["date"] = pd.to_datetime(df1.date,utc=True)
+	df1["date"] = pd.to_datetime(df1["date"],unit="ns", utc=True)
 	df1.index = df1["date"]
 	print(df1)
 
@@ -40,10 +40,10 @@ def new_dash(**kwargs):
 		[
 		dcc.DatePickerRange(
 			id="my-date-picker-range",
-			min_date_allowed=dt(2019, 1, 1),
-			max_date_allowed=dt(2019, 1, 4),
-			initial_visible_month=dt(2019, 1, 1),
-			end_date=dt(2019, 1, 4),
+			min_date_allowed=dt(2021, 1, 1),
+			max_date_allowed=dt(2022, 1, 4),
+			initial_visible_month=dt(2021, 1, 1),
+			end_date=dt(2022, 1, 4),
 		),
 
 
@@ -111,8 +111,8 @@ def new_dash(**kwargs):
 	def update_data(start_date, end_date):
 		data = df1.to_dict("records")
 		if start_date and end_date:
-			mask = (date_string_to_date(df1["Date"]) >= date_string_to_date(start_date)) & (
-				date_string_to_date(df1["Date"]) <= date_string_to_date(end_date)
+			mask = (date_string_to_date(df1["date"]) >= date_string_to_date(start_date)) & (
+				date_string_to_date(df1["date"]) <= date_string_to_date(end_date)
 			)
 			data = df1.loc[mask].to_dict("records")
 		return data
