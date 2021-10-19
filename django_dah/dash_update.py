@@ -125,10 +125,9 @@ def new_dash(**kwargs):
 
 	'''
 	df1 = pd.DataFrame(Person.objects.filter(**kwargs).values())
-	df1["date"] = pd.to_datetime(df1.date,utc=True)
-	df1.index = df1["date"]
-	print(df1)
-	app = dash.Dash()
+	df1["date"] = pd.to_datetime(df1['date'],utc=True)
+	app = DjangoDash('dash_integration_id')
+
 
 	app.layout = html.Div(
 	    [
@@ -207,6 +206,7 @@ def new_dash(**kwargs):
 	)
 	def update_data(start_date, end_date):
 	    data = df1.to_dict("records")
+	    print(df[:2])
 	    if start_date and end_date:
 	        mask = (date_string_to_date(df1["date"]) >= date_string_to_date(start_date)) & (
 	            date_string_to_date(df1["date"]) <= date_string_to_date(end_date)
