@@ -128,13 +128,16 @@ def new_dash(**kwargs):
 	df1["date"] = pd.to_datetime(df1.date,utc=True)
 	df1.index = df1["date"]
 	print(df1)
-	app = dash.Dash()
+
+	dff = pd.DataFrame() 
+
+	external_stylesheets=['https://codepen.io/amyoshino/pen/jzXypZ.css']
+	app = DjangoDash('dash_integration_id')
 
 	app.layout = html.Div(
 	    [
 
-	    html.Div([html.Button("Download csv", id="btn"), dcc.Download(id="download")]),
-
+	    
 	    html.Div([
 	        dcc.DatePickerRange(
 	            id="my-date-picker-range",
@@ -184,13 +187,11 @@ def new_dash(**kwargs):
 	                "height": "auto",
 	            },
 	        ),
-	        ])
+	        ]),
+	    html.Div([html.Button("Download csv", id="btn"), dcc.Download(id="download")]),
+
 	    ]
 	)
-
-	@app.callback(Output("download", "data"), [Input("btn", "n_clicks")],prevent_initial_call=True,)
-	def generate_csv(n_nlicks):
-		return send_data_frame(df1.to_csv, filename=str(round(time.time()))+'.csv')
 
 
 	def date_string_to_date(date_string):
@@ -212,7 +213,12 @@ def new_dash(**kwargs):
 	            date_string_to_date(df1["date"]) <= date_string_to_date(end_date)
 	        )
 	        data = df1.loc[mask].to_dict("records")
+	        dff = data
 	    return data
+
+	@app.callback(Output("download", "data"), [Input("btn", "n_clicks")],prevent_initial_call=True,)
+	def generate_csv(n_nlicks):
+		return send_data_frame(dff.to_csv, filename=str(round(time.time()))+'.csv')
 
 	if __name__ == "__main__":
 	    app.run_server(8052,debug=True)
