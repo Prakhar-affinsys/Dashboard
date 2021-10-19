@@ -125,6 +125,7 @@ def new_dash(**kwargs):
 
 	'''
 	df1 = pd.DataFrame(Person.objects.filter(**kwargs).values())
+<<<<<<< HEAD
 	df1["date"] = pd.to_datetime(df1.date,utc=True)
 	df1.index = df1["date"]
 	print(df1)
@@ -133,6 +134,11 @@ def new_dash(**kwargs):
 
 	external_stylesheets=['https://codepen.io/amyoshino/pen/jzXypZ.css']
 	app = DjangoDash('dash_integration_id')
+=======
+	df1["date"] = pd.to_datetime(df1['date'],utc=True)
+	app = DjangoDash('dash_integration_id')
+
+>>>>>>> 85d6465a385648e9ab126ffca1a90208e41aed6a
 
 	app.layout = html.Div(
 	    [
