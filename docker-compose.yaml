@@ -2,7 +2,7 @@ version: '3'
 services:
 
   dash:
-    image: 'bankbuddy.azurecr.io/dash-analytics:v1.0.0'
+    image: 'bankbuddy.azurecr.io/dash-analytics:v1.0.1'
     container_name: 'dash'
     ports:
       - "8050:8050"
