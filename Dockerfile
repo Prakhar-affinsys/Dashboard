@@ -1,9 +1,9 @@
 FROM python:3.7
 WORKDIR /analytics
 
-COPY requirements.txt /analytics
-RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install /analytics/requirements.txt
+# Install Requirements
+COPY requirements.txt .
+RUN pip3 install -r requirements.txt
 
 # Add Postgres client
 RUN apt-get update -y && \
