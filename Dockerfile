@@ -12,5 +12,3 @@ RUN apt-get update -y && \
 
 EXPOSE 8000
 EXPOSE 8052
-
-CMD ["-u","manage.py","runserver","0.0.0.0:8088"]
