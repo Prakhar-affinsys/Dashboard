@@ -5,6 +5,7 @@ services:
     image: 'bankbuddy.azurecr.io/dash-analytics:v1.0.1'
     container_name: 'dash'
     ports:
-      - "8050:8050"
+      - "8000:8000"
+      - "8052:8052"
     volumes:
     - ./app:/app
