@@ -16,3 +16,5 @@ EXPOSE 8000
 EXPOSE 8052
 
 ENV PYTHONUNBUFFERED=1
+
+RUN python -m pip install dpd-components==0.1.0 dpd-static-support==0.0.5
