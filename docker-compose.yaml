@@ -12,18 +12,19 @@ services:
       - .:/analytics
     networks:
      - dbnet
-    postgres_console:
-        image: 'postgres:latest'
-        ports:
-        - "5433:5432"
-        environment:
-        - POSTGRES_DB=console
-        - POSTGRES_PASSWORD=buddy
-        - POSTGRES_USER=buddy
-        volumes:
-        - ./data:/var/lib/postgresql/data
-        networks:
-        - dbnet
+
+  postgres_console:
+    image: 'postgres:latest'
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=console
+      - POSTGRES_PASSWORD=buddy
+      - POSTGRES_USER=buddy
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - dbnet
 
 networks:
     dbnet:
