@@ -14,7 +14,7 @@ services:
      - dbnet
 
   postgres_console:
-    image: 'postgres:latest'
+    image: 'postgres:13'
     ports:
       - "5433:5432"
     environment:
