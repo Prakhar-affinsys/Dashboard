@@ -16,7 +16,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -28,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,7 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
 
     'bootstrap4',
     'django_plotly_dash.apps.DjangoPlotlyDashConfig',
@@ -62,7 +59,7 @@ ROOT_URLCONF = 'django_dah.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'),],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,7 +73,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'django_dah.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -94,16 +90,15 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
- 	'canny': {
- 	'ENGINE': 'django.db.backends.postgresql',
- 	'NAME': 'console',
- 	'USER': 'buddy',
- 	'PASSWORD': 'buddy',
- 	'HOST': '54.237.109.105',
- 	'PORT': 5432,
- 	}
+    'canny': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'console',
+        'USER': 'buddy',
+        'PASSWORD': 'buddy',
+        'HOST': 'postgres_auth',
+        'PORT': 5432,
+    }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -123,7 +118,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -137,7 +131,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -147,7 +140,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 # ———- Add Django Dash start ——————————–
 # Adding ASGI Application
@@ -161,7 +153,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # ‘django_dash’: django app name
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'django_dash', 'static'),
-    ]
+]
 # Static content of Plotly components that should
 # be handled by the Django staticfiles infrastructure
 PLOTLY_COMPONENTS = [
@@ -185,11 +177,11 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('127.0.0.1', 6379),],
+            'hosts': [('127.0.0.1', 6379), ],
         },
     },
 }
 
 X_FRAME_OPTIONS = 'ALLOWALL'
 
-XS_SHARING_ALLOWED_METHODS = ['POST','GET','OPTIONS', 'PUT', 'DELETE']
+XS_SHARING_ALLOWED_METHODS = ['POST', 'GET', 'OPTIONS', 'PUT', 'DELETE']
