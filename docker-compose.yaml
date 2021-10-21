@@ -5,27 +5,28 @@ services:
     image: 'bankbuddy.azurecr.io/dash-analytics:v1.0.1'
     container_name: 'dash'
     command: 'python manage.py runserver 0.0.0.0:8000'
-    ports:
-      - "8000:8000"
-      - "8052:8052"
+    # ports:
+    #   - "8000:8000"
+    #   - "8052:8052"
     volumes:
       - .:/analytics
-    networks:
-     - dbnet
+    # networks:
+    #  - dbnet
+    network_mode: host
 
   postgres_console:
     image: 'postgres:13'
-    ports:
-      - "5433:5432"
     environment:
       - POSTGRES_DB=console
       - POSTGRES_PASSWORD=buddy
       - POSTGRES_USER=buddy
     volumes:
       - ./data:/var/lib/postgresql/data
-    networks:
-      - dbnet
+    # networks:
+      # - dbnet
+    network_mode: host
+
 
 networks:
-    dbnet:
-      driver: bridge
+  dbnet:
+    driver: bridge

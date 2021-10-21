@@ -11,7 +11,6 @@ from django.conf.urls.static import static
 import django_dah.dash_app_code
 
 import django_dah.dash_code_new
-
 #from django_plotly_dash.views import add_to_session
 
 urlpatterns = [

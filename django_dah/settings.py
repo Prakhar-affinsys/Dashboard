@@ -95,8 +95,8 @@ DATABASES = {
         'NAME': 'console',
         'USER': 'buddy',
         'PASSWORD': 'buddy',
-        'HOST': 'postgres_console',
-        'PORT': 5432,
+        'HOST': 'localhost',
+        'PORT': 5432
     }
 }
 
