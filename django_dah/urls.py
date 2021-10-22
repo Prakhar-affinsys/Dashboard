@@ -23,5 +23,6 @@ urlpatterns = [
 	path('click/',include('demo.urls')),
 	#path('plot/', include('demo.urls')),
 	path('plot1/', include('demo.urls')),
+	path('plot2/', include('demo.urls')),
 
 ]

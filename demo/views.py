@@ -7,6 +7,7 @@ from django_dah.dash_app_code import new_plot, new_plot1, new_plot2
 from django_dah.dash_code_new import new_plot_clean
 from django_dah.dash_update import new_dash
 from django_dah.dash_canny1 import canny_userstage
+from django_dah.dash_canny2 import canny_usersession
 
 from django.http import HttpResponseRedirect
 from datetime import datetime 
@@ -65,3 +66,11 @@ class Dashboard(APIView):
 		#new_dash(**kwargs)
 		canny_userstage(**kwargs)
 		return HttpResponseRedirect('/dash_plot')
+
+class Dashboard_canny(APIView):
+	def post(self,request):
+		payload = self.request.data
+		kwargs=payload
+		canny_usersession(**kwargs)
+		return HttpResponseRedirect('/dash_plot')
+		

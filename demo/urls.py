@@ -11,4 +11,5 @@ path('click/', NameViews.as_view(),name='nameviews'),
 #url('^django_plotly_dash/', include('django_plotly_dash.urls')),
 path('plot/',Analytics.as_view(),name='analyticsview'),
 path('plot1/',Dashboard.as_view(),name='dashboardview'),
+path('plot2/',Dashboard_canny.as_view(),name='dashboardcannyview'),
 ]
