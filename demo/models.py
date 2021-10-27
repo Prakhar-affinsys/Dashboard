@@ -730,7 +730,7 @@ class LocalusersTempsocialuser(models.Model):
     agent = models.ForeignKey(LocalusersLocaluser, models.DO_NOTHING, blank=True, null=True)
     social = models.ForeignKey(LocalusersSocial, models.DO_NOTHING)
     email = models.CharField(max_length=254, blank=True, null=True)
-    phone_number = models.CharField(max_length=300, blank=True, null=True)
+    phone_number = models.CharFiesudold(max_length=300, blank=True, null=True)
     skill = models.CharField(max_length=200, blank=True, null=True)
     last_activity = models.DateTimeField()
     is_circulating = models.BooleanField()

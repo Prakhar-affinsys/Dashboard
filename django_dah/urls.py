@@ -18,7 +18,7 @@ urlpatterns = [
 	
 	path('', include('django.contrib.auth.urls')),
 	url('^dash_plot$', TemplateView.as_view(template_name='dash_plot.html'), name="dash_plot"),
-	url('^django_plotly_dash/', include('django_plotly_dash.urls')),
+	url('^analytics/', include('django_plotly_dash.urls')),
 	path('', TemplateView.as_view(template_name='home.html'), name='home'),
 	path('click/',include('demo.urls')),
 	#path('plot/', include('demo.urls')),

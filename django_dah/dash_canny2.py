@@ -21,6 +21,7 @@ def canny_usersession(**kwargs):
     value = df,
     domain = {'row': 0, 'column': 0}))
     
+    
     app.layout = html.Div([
         html.Div([
             # Adding one extar Div
@@ -31,6 +32,8 @@ def canny_usersession(**kwargs):
          html.Div([
              dcc.Graph(figure=fig)
          ])
+
+
 
         
     

@@ -3,6 +3,7 @@ from django.conf.urls import url
 from .views import *
 
 from django.views.generic import TemplateView
+from demo.views import testview
 
 
 urlpatterns =[
@@ -12,4 +13,5 @@ path('click/', NameViews.as_view(),name='nameviews'),
 path('plot/',Analytics.as_view(),name='analyticsview'),
 path('plot1/',Dashboard.as_view(),name='dashboardview'),
 path('plot2/',Dashboard_canny.as_view(),name='dashboardcannyview'),
+path('test', testview)
 ]
